@@ -37,7 +37,7 @@ class App extends Component {
           </div>
         </div>
         <div className='map'>
-          <SimpleMap />
+          <SimpleMap flats={this.state.flats}/>
         </div>
       </div>
     );
