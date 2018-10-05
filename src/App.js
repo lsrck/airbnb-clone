@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.scss';
 import Flat from './components/flat';
+import SimpleMap from './components/googleMaps'
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class App extends Component {
           </div>
         </div>
         <div className='map'>
+          <SimpleMap />
         </div>
       </div>
     );
