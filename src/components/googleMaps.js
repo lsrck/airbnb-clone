@@ -14,14 +14,13 @@ class SimpleMap extends Component {
   };
 
   render() {
-    console.log(this.props.flats)
     return (
       <GoogleMapReact
         defaultCenter={this.props.center}
         defaultZoom={this.props.zoom}
       >
         {this.props.flats.map(flat =>
-          {return <Marker lat={flat.lat} lng={flat.lng} text={flat.price} />
+          {return <Marker key={flat.name} lat={flat.lat} lng={flat.lng} text={flat.price} />
         })}
       </GoogleMapReact>
   )};
