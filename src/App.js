@@ -9,7 +9,9 @@ class App extends Component {
     super(props);
     this.state = {
       flats: [],
-      selectedFlat: null
+      allFlats: [],
+      selectedFlat: null,
+      search: ""
     };
   }
 
@@ -19,7 +21,8 @@ class App extends Component {
       .then(response => response.json())
       .then((data) => {
         this.setState({
-          flats: data
+          flats: data,
+          allFlats: data
         });
       })
   }
@@ -30,12 +33,24 @@ class App extends Component {
     });
   }
 
+  handleSearch = (event) => {
+    this.setState({
+      search: event.target.value,
+      flats: this.state.allFlats.filter((flat) => new RegExp(event.target.value, "i").exec(flat.name))
+    })
+  }
+
   render() {
 
     return (
       <div className='app'>
         <div className='main'>
           <div className='search'>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={this.state.search}
+            onChange={this.handleSearch} />
           </div>
           <div className='flats'>
             {this.state.flats.map(flat =>
