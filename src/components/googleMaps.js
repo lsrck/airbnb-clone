@@ -5,22 +5,35 @@ import Marker from './marker'
 
 
 class SimpleMap extends Component {
-  static defaultProps = {
-    center: {
-      lat: 48.85341,
-      lng: 2.3488
-    },
-    zoom: 11
-  };
 
   render() {
+    let center = {
+      lat: 48.8566,
+      lng: 2.3522
+    }
+    let zoom = 11
+
+    if (this.props.selectedFlat) {
+      console.log(this.props.selectedFlat)
+      center = {
+        lat: this.props.selectedFlat.lat,
+        lng: this.props.selectedFlat.lng
+      };
+      zoom = 13;
+    }
+
     return (
       <GoogleMapReact
-        defaultCenter={this.props.center}
-        defaultZoom={this.props.zoom}
+        center={center}
+        zoom={zoom}
       >
         {this.props.flats.map(flat =>
-          {return <Marker key={flat.name} lat={flat.lat} lng={flat.lng} text={flat.price} />
+          {return <Marker 
+            key={flat.name} 
+            lat={flat.lat} 
+            lng={flat.lng} 
+            text={flat.price} 
+            selected={flat === this.props.selectedFlat} />
         })}
       </GoogleMapReact>
   )};
